@@ -1,0 +1,17 @@
+<?php
+/** @var \Perspective\Thema15exercise2\Block\Template $block */
+$viewModel = $block->getViewModel();
+//$currentProduct->getData('Social')
+$currentProduct = $viewModel -> getCurrentProduct();
+$Weigh=20;
+if ($viewModel->isEnabled()) {
+    
+    echo '<b>Вес продукта: </b>' . $Weigh. '<br />';
+    echo '<b>WeightX: </b>' . $viewModel->getWeightX() . '<br />';
+    echo '<b>PriceY: </b>' . $viewModel->getPriceY(). '<br />';
+    if ($currentProduct->getData('AirFreightOnly')!="none" && $Weigh>$viewModel->getWeightX()){
+        echo 'За перевозку <b>' . $currentProduct->getData('AirFreightOnly') ."</b> будет начислена дополнительная оплата <b>".($Weigh-$viewModel->getWeightX())*$viewModel->getPriceY(). '$</b><br />'; 
+    }
+}
+?>
+
